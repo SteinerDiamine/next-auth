@@ -11,7 +11,7 @@ import { sendVerificationEmail } from '@/lib/mail';
 export const register = async (values: any) => {
     const validatedFields = RegisterSchema.safeParse(values);
     if (!validatedFields.success) {
-        return { error: "Invalid fields"};
+        return { error: "Invalid fields"}; 
     }
 
     const { name, email, password } = validatedFields.data;
