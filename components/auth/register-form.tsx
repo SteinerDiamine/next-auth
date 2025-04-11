@@ -22,7 +22,7 @@ import { FormSucess } from '@/components/form-success';
 
 
 import { register } from "@/actions/register";
-import { CardWrapper } from "./card-wrapper";
+import CardWrapper from './card-wrapper';
 import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/form-error";
 import { RegisterSchema } from "@/schemas";

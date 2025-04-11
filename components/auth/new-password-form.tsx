@@ -1,7 +1,7 @@
 'use client';
 import * as z from 'zod';
 import { NewPasswordSchema } from '@/schemas';
-import { CardWrapper } from "./card-wrapper";
+import CardWrapper from './card-wrapper';
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import { useSearchParams } from 'next/navigation';

@@ -1,8 +1,8 @@
 
 
 import { AiOutlineWarning } from "react-icons/ai";
+import CardWrapper from './card-wrapper';
 
-import { CardWrapper } from "./card-wrapper";
 
 export const ErrorCard = () => {
   return (
