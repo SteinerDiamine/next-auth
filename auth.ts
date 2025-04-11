@@ -33,7 +33,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
 
       //allow Oauth without email verification
       if(account?.provider !== "credentials") return true;
-
+       //@ts-ignore
       const existingUser = await getUserById(user.id);
       if (!existingUser?.emailVerified) return false;
       
