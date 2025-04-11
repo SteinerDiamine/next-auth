@@ -21,8 +21,8 @@ import { FormError } from '@/components/form-error';
 import { FormSucess } from '@/components/form-success';
 
 import { useState, useTransition } from 'react';
-import { login } from '@/actions/login';
-import { reset } from '@/actions/reset';
+// import { login } from '@/actions/login';
+// import { reset } from '@/actions/reset';
 import { newPassword } from '@/actions/new-password';
 
 
