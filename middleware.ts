@@ -8,6 +8,7 @@ import {
     publicRoutes } from "@/routes";
 
 const { auth } = NextAuth(authConfig)
+//@ts-ignore
 export default auth(async function middleware(req: NextRequest) {
 
     const {nextUrl} = req;
