@@ -4,6 +4,7 @@ import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
 import {Analytics} from "@vercel/analytics/react";
+import  {Toaster} from "@/components/ui/sonner";
 
 
 
@@ -35,6 +36,7 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Toaster />
         {children}
         <Analytics />
       </body>

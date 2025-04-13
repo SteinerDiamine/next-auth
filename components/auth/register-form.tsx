@@ -119,10 +119,25 @@ export function RegisterForm() {
           < FormError message={error} />
           <FormSucess message={success} />
           <Button disabled={isPending} type="submit" className="w-full">
-            Create an account
+            Create an acco+unt
           </Button>
         </form>
       </Form>
     </CardWrapper>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
