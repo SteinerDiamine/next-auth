@@ -5,6 +5,8 @@ import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
 import {Analytics} from "@vercel/analytics/react";
 import  {Toaster} from "@/components/ui/sonner";
+import { ThemeProvider } from "@/components/auth/providers/theme-providers";
+import { cn } from "@/lib/utils";
 
 
 
@@ -32,12 +34,23 @@ export default async function RootLayout({
 
   return (
     <SessionProvider session={session}>
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={cn
+          `${geistSans.variable}
+           ${geistMono.variable},
+           bg-white dark:bg-gray-900
+            antialiased`}
       >
         <Toaster />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          storageKey="theme"
+          >
         {children}
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>
