@@ -114,9 +114,9 @@ export default function LoginFormDemo() {
   />
   <div className="text-center">
     <h2 className="text-2xl font-bold text-neutral-100 md:text-3xl">
-      Welcome back to Connect
+      Welcome back 
     </h2>
-    <p className="text-sm text-neutral-400 md:text-base">
+    <p className="text-sm text-neutral-400 md:text-base text-center">
       Login to continue your journey
     </p>
   </div>

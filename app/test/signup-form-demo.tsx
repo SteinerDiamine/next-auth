@@ -17,6 +17,7 @@ import { register } from "@/actions/register";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function SignupFormDemo() {
   const [error, setError] = useState<string | undefined>("");
@@ -67,12 +68,30 @@ export default function SignupFormDemo() {
   return (
     <div className="flex min-h-[calc(100vh-2rem)] items-center justify-center p-4">
       <div className="mx-auto w-full max-w-md rounded-lg border border-zinc-800 bg-black p-4 text-white shadow-lg shadow-zinc-950/50 md:rounded-xl md:p-8">
-        <h2 className="text-2xl font-bold text-neutral-100 text-center md:text-3xl">
+        {/* <h2 className="text-2xl font-bold text-neutral-100 text-center md:text-3xl">
           Welcome to Connect
         </h2>
         <p className="mt-2 text-sm text-neutral-400 text-center md:text-base">
           Register to begin with our application
-        </p>
+        </p> */}
+
+        <div className="flex items-center justify-center gap-3">
+          <Image 
+            src="/lego.png" 
+            alt="Connect Logo"
+            width={80}
+            height={80}
+            className="" // Adjust size as needed
+          />
+          <div className="text-center">
+            <h2 className="text-2xl font-bold text-neutral-100 md:text-3xl">
+              Welcome! 
+            </h2>
+            <p className="text-sm text-neutral-400 md:text-base text-center">
+              SignUp to continue your journey
+            </p>
+          </div>
+        </div>
 
         <form className="my-6 md:my-8" onSubmit={handleSubmit(onSubmit)}>
           <div className="space-y-3 md:space-y-4">
