@@ -428,7 +428,7 @@ export default function LoginFormDemo() {
           </button>
 
           <div className="text-center mt-4 text-sm text-neutral-400">
-            Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
             <Link 
               href="/auth/register" 
               className="text-cyan-500 hover:to-blue-900 hover:underline transition-colors"
