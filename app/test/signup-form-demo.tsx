@@ -81,7 +81,7 @@ export default function SignupFormDemo() {
             alt="Connect Logo"
             width={80}
             height={80}
-            className="" // Adjust size as needed
+            className="" 
           />
           <div className="text-center">
             <h2 className="text-2xl font-bold text-neutral-100 md:text-3xl">
