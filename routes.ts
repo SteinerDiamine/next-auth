@@ -2,7 +2,8 @@
 export const publicRoutes = [
     "/",
     "/auth/new-verification",
-    '/test'
+    '/test',
+    '/api/uploadthing',
     
 ];
 

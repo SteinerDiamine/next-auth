@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 
 
 
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -34,26 +35,26 @@ export default async function RootLayout({
 
   return (
     <SessionProvider session={session}>
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={cn
-          `${geistSans.variable}
-           ${geistMono.variable},
-           bg-white dark:bg-gray-900
-            antialiased`}
-      >
-        <Toaster />
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
-          storageKey="theme"
+      <html lang="en" suppressHydrationWarning>
+        <body
+          className={cn(
+            geistSans.variable,
+            geistMono.variable,
+            " bg-black antialiased"
+          )}
+        >
+          <Toaster />
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem={false}
+            storageKey="theme"
           >
-        {children}
-        </ThemeProvider>
-        <Analytics />
-      </body>
-    </html>
+            {children}
+          </ThemeProvider>
+          <Analytics />
+        </body>
+      </html>
     </SessionProvider>
   );
 }

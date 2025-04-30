@@ -121,7 +121,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState, useTransition } from 'react';
 import { reset } from '@/actions/reset';
 import Link from 'next/link';
-import Image from 'next/image';
 
 export const ResetForm = () => {
   const [error, setError] = useState<string | undefined>("");
