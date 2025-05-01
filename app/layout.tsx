@@ -36,12 +36,15 @@ export default async function RootLayout({
   return (
     <SessionProvider session={session}>
       <html lang="en" suppressHydrationWarning>
-        <body
+        {/* <body
           className={cn(
             geistSans.variable,
             geistMono.variable,
             " bg-black antialiased"
           )}
+        > */}
+         <body
+          className={cn(geistSans.variable, geistMono.variable, "bg-white dark:bg-[#121212]")}
         >
           <Toaster />
           <ThemeProvider
@@ -49,6 +52,7 @@ export default async function RootLayout({
             defaultTheme="dark"
             enableSystem={false}
             storageKey="theme"
+            forcedTheme="dark"
           >
             {children}
           </ThemeProvider>

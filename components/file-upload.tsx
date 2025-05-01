@@ -103,12 +103,13 @@ export function FileUpload({
   // ✅ Image preview
   if (value && fileType !== "pdf") {
     return (
-      <div className="relative h-24 w-24 rounded-lg overflow-hidden border">
+  
+        <div className="relative h-20 w-20">
         <Image
           src={value}
           alt="Uploaded file"
           fill
-          className="object-cover"
+          className="rounded-full"
         />
         <button
           onClick={() => onChange("")}
