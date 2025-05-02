@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
-import {Analytics} from "@vercel/analytics/react";
 import  {Toaster} from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/auth/providers/theme-providers";
 import { cn } from "@/lib/utils";
@@ -52,11 +51,11 @@ export default async function RootLayout({
             defaultTheme="dark"
             enableSystem={false}
             storageKey="theme"
-            forcedTheme="dark"
+            
           >
             {children}
           </ThemeProvider>
-          <Analytics />
+       
         </body>
       </html>
     </SessionProvider>
