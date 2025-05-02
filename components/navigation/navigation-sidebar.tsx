@@ -100,9 +100,9 @@ export async function NavigationSidebar() {
     
     {/* Bottom section that stays fixed */}
     <div className="pb-3 flex items-center flex-col gap-y-4">
-      <div className="cursor-pointer bg-transparent border-0">
+     
       <ModeToggle  />
-      </div>
+
      
       <UserButton />
     </div>

@@ -6,6 +6,7 @@ import { auth } from "@/auth";
 import  {Toaster} from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/auth/providers/theme-providers";
 import { cn } from "@/lib/utils";
+import { ModalProviders } from "@/components/providers/modal-providers";
 
 
 
@@ -53,6 +54,7 @@ export default async function RootLayout({
             storageKey="theme"
             
           >
+            <ModalProviders/>
             {children}
           </ThemeProvider>
        
