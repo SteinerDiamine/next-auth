@@ -64,13 +64,8 @@ import { db } from "@/lib/db";
 import { currentProfile } from "@/lib/current-profile";
 import ServerSidebar from "@/components/server/server-sidebar";
 
-// Define metadata for this layout (optional)
-export const metadata: Metadata = {
-  title: "Server",
-  description: "Server page",
-};
 
-// Type definition for the component props
+
 interface ServerIdLayoutProps {
   children: ReactNode;
   params: { serverId: string };
