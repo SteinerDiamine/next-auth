@@ -35,18 +35,18 @@ const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
     },
   });
 
-  const textChannels = server?.channels.filter(
-    (channel) => channel.type === ChannelType.TEXT
-  );
-  const audioChannels = server?.channels.filter(
-    (channel) => channel.type === ChannelType.VOICE
-  );
-  const videoChannels = server?.channels.filter(
-    (channel) => channel.type === ChannelType.VIDEO
-  );
-  const members = server?.members.filter(
-    (member) => member.profileId !== profile.id
-  );
+  // const textChannels = server?.channels.filter(
+  //   (channel) => channel.type === ChannelType.TEXT
+  // );
+  // const audioChannels = server?.channels.filter(
+  //   (channel) => channel.type === ChannelType.VOICE
+  // );
+  // const videoChannels = server?.channels.filter(
+  //   (channel) => channel.type === ChannelType.VIDEO
+  // );
+  // const members = server?.members.filter(
+  //   (member) => member.profileId !== profile.id
+  // );
 
 	if (!server) {
 		return redirect("/")
