@@ -40,4 +40,12 @@ declare module "next-auth" {
   interface Session {
     user: ExtendedUser;
   }
+
+}
+
+declare module "next" {
+  export interface LayoutProps {
+    children: React.ReactNode;
+    params?: Record<string, string | string[]>;
+  }
 }
