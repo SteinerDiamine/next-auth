@@ -73,6 +73,7 @@ export function InviteModal() {
           <div className="flex items-center mt-2 gap-x-2">
             <Input
             disabled={isloading}
+            readOnly
 
             className="bg-zinc-300/50 border-0 focus-visible:ring-0 text-black focus-visible ring-offset-0"
             value={inviteUrl}
