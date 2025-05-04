@@ -5,7 +5,7 @@ import ServerSidebar from "@/components/server/server-sidebar";
 
 interface ServerIdLayoutProps {
   children: React.ReactNode;
-  params: Promise<{ serverId: string }>; // Wrap params in Promise
+  params: Promise<{ serverId: string }>; 
 }
 
 export default async function ServerIdLayout({
