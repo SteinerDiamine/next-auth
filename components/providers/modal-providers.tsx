@@ -7,20 +7,17 @@ import { EditServerModal } from "../modals/edit-server-modal";
 import { MembersModal } from "../modals/manage-members-modal";
 
 
-export const ModalProviders = () => {
+export function ModalProvider() {
     const [isMounted, setIsMounted] = useState(false);
-
+  
     useEffect(() => {
-        setIsMounted(true);
+      setIsMounted(true);
     }, []);
-
-    if (!isMounted) {
-        return null;
-    }   
-
-
+  
+    if (!isMounted) return null;
+  
     return (
-        <>
+ <>
             <CreateServerModal />
             <InviteModal/>
             <EditServerModal/>

@@ -12,7 +12,6 @@ export default async function ServerIdLayout({
   children,
   params,
 }: ServerIdLayoutProps) {
-  // Await the params promise
   const { serverId } = await params;
   
   const profile = await currentProfile();
@@ -37,6 +36,6 @@ export default async function ServerIdLayout({
   );
 }
 
-// Remove these if not needed
+
 export const dynamic = "force-dynamic";
 export const revalidate = 0;

@@ -6,9 +6,8 @@ import { auth } from "@/auth";
 import  {Toaster} from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/auth/providers/theme-providers";
 import { cn } from "@/lib/utils";
-import { ModalProviders } from "@/components/providers/modal-providers";
 
-
+import { ModalProvider } from "@/components/providers/modal-providers";
 
 
 const geistSans = Geist({
@@ -54,7 +53,7 @@ export default async function RootLayout({
             storageKey="theme"
             
           >
-            <ModalProviders/>
+            <ModalProvider/>
             {children}
           </ThemeProvider>
        

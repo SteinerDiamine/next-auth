@@ -5,6 +5,7 @@ import React from "react";
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import ServerHeader from "./server-header";
+// import { ChannelType } from "@prisma/client";
 
 interface ServerSidebarProps {
   serverId: string;
@@ -64,3 +65,11 @@ const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
 };
 
 export default ServerSidebar;
+
+
+
+
+
+
+
+
