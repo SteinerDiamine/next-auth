@@ -31,12 +31,12 @@
 
 
 //   return (
-//     <div className="h-full">
-//       <div className="hidden md:flex h-full w-60 z-20 flex-col fixed inset-y-0">
-//         <ServerSidebar serverId={serverId} />
-//       </div>
-//       <main className="h-full md:pl-60">{children}</main>
-//     </div>
+    // <div className="h-full">
+    //   <div className="hidden md:flex h-full w-60 z-20 flex-col fixed inset-y-0">
+    //     <ServerSidebar serverId={serverId} />
+    //   </div>
+    //   <main className="h-full md:pl-60">{children}</main>
+    // </div>
 //   );
 // }
 
@@ -53,10 +53,11 @@ import { redirect } from "next/navigation";
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { ServerSidebar } from "@/components/server/server-sidebar";
+import { ChannelType, MemberRole } from "@prisma/client";
 
 interface ServerIdLayoutProps {
   children: React.ReactNode;
-  params: { serverId: string }; // Changed from Promise to direct object
+  params: { serverId: string };
 }
 
 export default async function ServerIdLayout({
@@ -69,60 +70,51 @@ export default async function ServerIdLayout({
   const server = await db.server.findUnique({
     where: {
       id: params.serverId,
-      members: {
-        some: {
-          profileId: profile.id
-        }
-      }
+      members: { some: { profileId: profile.id } }
     },
     include: {
       channels: {
-        orderBy: {
-          createdAt: "asc"
-        }
+        orderBy: { createdAt: "asc" }
       },
       members: {
-        include: {
-          profile: true
-        },
-        orderBy: {
-          role: "asc"
-        }
+        include: { profile: true },
+        orderBy: { role: "asc" }
       }
     }
   });
 
   if (!server) return redirect("/");
 
-  // Filter channels and members
+  // Filter data for the sidebar
   const textChannels = server.channels.filter(
-    channel => channel.type === "TEXT"
+    (channel) => channel.type === ChannelType.TEXT
   );
   const audioChannels = server.channels.filter(
-    channel => channel.type === "VOICE"
+    (channel) => channel.type === ChannelType.VOICE
   );
   const videoChannels = server.channels.filter(
-    channel => channel.type === "VIDEO"
+    (channel) => channel.type === ChannelType.VIDEO
   );
   const members = server.members.filter(
-    member => member.profileId !== profile.id
+    (member) => member.profileId !== profile.id
   );
   const role = server.members.find(
-    member => member.profileId === profile.id
+    (member) => member.profileId === profile.id
   )?.role;
 
   return (
     <div className="h-full">
-      <div className="hidden md:flex h-full w-60 z-20 flex-col fixed inset-y-0">
-        <ServerSidebar 
-          server={server}
-          textChannels={textChannels}
-          audioChannels={audioChannels}
-          videoChannels={videoChannels}
-          members={members}
-          role={role}
-        />
-      </div>
+      {/* ServerSidebar handles both mobile and desktop views internally */}
+      <ServerSidebar 
+        server={server}
+        textChannels={textChannels}
+        audioChannels={audioChannels}
+        videoChannels={videoChannels}
+        members={members}
+        role={role}
+      />
+      
+      {/* Main content with left padding for desktop sidebar */}
       <main className="h-full md:pl-60">
         {children}
       </main>
