@@ -51,7 +51,7 @@ export function CreateChannelModal() {
   const params = useParams();
 
   const isModalOpen = isOpen && type === "createChannel";
-  // const { channelType } = data;
+  const { channelType } = data;
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -61,13 +61,13 @@ export function CreateChannelModal() {
     }
   });
 
-  // useEffect(() => {
-  //   if (channelType) {
-  //     form.setValue("type", channelType);
-  //   } else {
-  //     form.setValue("type", ChannelType.TEXT);
-  //   }
-  // }, [channelType, form]);
+  useEffect(() => {
+    if (channelType) {
+      form.setValue("type", channelType);
+    } else {
+      form.setValue("type", ChannelType.TEXT);
+    }
+  }, [channelType, form]);
 
   const isLoading = form.formState.isSubmitting;
 
