@@ -250,3 +250,13 @@ body,
 
 
 
+/* styles/globals.css */
+button,
+a,
+input[type="button"],
+input[type="submit"],
+label,
+[role="button"],
+[tabindex]:not([tabindex="-1"]) {
+  cursor: pointer;
+}
