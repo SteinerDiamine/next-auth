@@ -134,9 +134,6 @@
 //     </Dialog>
 //   );
 // }
-
-
-
 "use client";
 
 import { useForm } from "react-hook-form";
@@ -151,70 +148,52 @@ const formSchema = z.object({
   imageUrl: z.string().min(1, { message: "Server image is required." })
 });
 
-export function CreateServerModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+export function CreateServerModal() {
   const router = useRouter();
   const modalRef = useRef<HTMLDivElement>(null);
+  const [isOpen, setIsOpen] = useState(false); // Internal state instead of props
   const [isClosing, setIsClosing] = useState(false);
+  
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: { name: "", imageUrl: "" }
   });
 
-  // Debugging effect
-  useEffect(() => {
-    console.log(`Modal state - isOpen: ${isOpen}, isClosing: ${isClosing}`);
-  }, [isOpen, isClosing]);
+  // Open/close handlers
+  const openModal = () => setIsOpen(true);
+  const closeModal = () => setIsOpen(false);
 
-  // Safe close handler
   const handleClose = () => {
     if (isClosing) return;
-    
-    console.log("Starting close sequence");
     setIsClosing(true);
-    
-    // Reset form asynchronously
     setTimeout(() => {
       form.reset();
-      console.log("Form reset complete");
-      
-      // Close modal after cleanup
-      onClose();
+      closeModal();
       setIsClosing(false);
-      console.log("Modal close complete");
-    }, 100); // Small delay to ensure UI responsiveness
+    }, 100);
   };
 
-  // Enhanced submit handler
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      console.log("Submitting form");
       await axios.post("/api/servers", values);
-      
-      // Ensure router operations don't block
       setTimeout(() => {
         router.refresh();
         handleClose();
-        console.log("Navigation complete");
       }, 0);
     } catch (error) {
       console.error("Submission error:", error);
     }
   };
 
-  // Event listeners with proper cleanup
   useEffect(() => {
     if (!isOpen) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        e.preventDefault();
-        handleClose();
-      }
+      if (e.key === "Escape") handleClose();
     };
 
     const handleClickOutside = (e: MouseEvent) => {
       if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
-        e.preventDefault();
         handleClose();
       }
     };
@@ -232,34 +211,11 @@ export function CreateServerModal({ isOpen, onClose }: { isOpen: boolean; onClos
 
   return (
     <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
-      <div 
-        ref={modalRef}
-        className="bg-white rounded-lg w-full max-w-md mx-4"
-      >
-        {/* Modal content remains the same as previous example */}
-        {/* ... */}
-        
-        <div className="p-4 flex justify-end space-x-2 border-t">
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              handleClose();
-            }}
-            className="px-4 py-2 text-sm font-medium text-gray-700"
-          >
-            Close
-          </button>
-          <button
-            type="submit"
-            onClick={(e) => {
-              e.stopPropagation();
-              form.handleSubmit(onSubmit)();
-            }}
-            className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded"
-          >
-            Create
-          </button>
-        </div>
+      <div ref={modalRef} className="bg-white rounded-lg w-full max-w-md mx-4 p-6">
+        {/* Your form content goes here */}
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          {/* Form fields would go here */}
+        </form>
       </div>
     </div>
   );
