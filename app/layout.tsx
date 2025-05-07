@@ -3,11 +3,11 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
-import {Analytics} from "@vercel/analytics/react";
 import  {Toaster} from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/auth/providers/theme-providers";
 import { cn } from "@/lib/utils";
 
+import { ModalProvider } from "@/components/providers/modal-providers";
 
 
 const geistSans = Geist({
@@ -34,26 +34,31 @@ export default async function RootLayout({
 
   return (
     <SessionProvider session={session}>
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={cn
-          `${geistSans.variable}
-           ${geistMono.variable},
-           bg-white dark:bg-gray-900
-            antialiased`}
-      >
-        <Toaster />
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
-          storageKey="theme"
+      <html lang="en" suppressHydrationWarning>
+        {/* <body
+          className={cn(
+            geistSans.variable,
+            geistMono.variable,
+            " bg-black antialiased"
+          )}
+        > */}
+         <body
+          className={cn(geistSans.variable, geistMono.variable, "bg-white dark:bg-[#121212]")}
+        >
+          <Toaster />
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem={false}
+            storageKey="theme"
+            
           >
-        {children}
-        </ThemeProvider>
-        <Analytics />
-      </body>
-    </html>
+            <ModalProvider/>
+            {children}
+          </ThemeProvider>
+       
+        </body>
+      </html>
     </SessionProvider>
   );
 }
