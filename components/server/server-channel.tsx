@@ -21,6 +21,9 @@ const iconMap = {
   [ChannelType.VIDEO]: Video
 };
 
+
+
+
 export function ServerChannel({
   channel,
   server,
