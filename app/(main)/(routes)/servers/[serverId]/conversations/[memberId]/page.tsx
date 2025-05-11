@@ -5,7 +5,7 @@ import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { getOrCreateConversation } from "@/lib/conversation";
 import { ChatHeader } from "@/components/chat/chat-header";
-import { ChatMessages } from "@/components/chat/chat-messages";
+// import { ChatMessages } from "@/components/chat/chat-messages";
 import { ChatInput } from "@/components/chat/chat-input";
 // import { MediaRoom } from "@/components/media-room";
 
@@ -53,13 +53,9 @@ export default async function MemberIdPage({
 
   return (
     <div className="bg-white dark:bg-[#313338] flex flex-col h-full">
-      <ChatHeader
-        imageUrl={otherMember.profile.ImageUrl}
-        name={otherMember.profile.name}
-        serverId={serverId}
-        type="conversation"
+      <ChatHeader serverId={""} name={""} type={"channel"}        
       />
-      {video && <MediaRoom chatId={conversation.id} video audio />}
+      {/* {video && <MediaRoom chatId={conversation.id} video audio />}
       {!video && (
         <>
           <ChatMessages
@@ -84,7 +80,7 @@ export default async function MemberIdPage({
             }}
           />
         </>
-      )}
+      )} */}
     </div>
   );
 }
