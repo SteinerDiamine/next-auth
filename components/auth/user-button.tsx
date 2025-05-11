@@ -19,8 +19,13 @@ import { useCurrentUser } from '@/hooks/use-current-user'
 import { LogoutButton } from './logout-button'
 import { ArrowRightOnRectangleIcon } from '@heroicons/react/24/outline';
 
+interface UserButtonProps {
+    src?: string;
+    className?: string;
+}
 
-export const UserButton = () => {
+
+export const UserButton = ({src, className}: UserButtonProps) => {
 
     const user = useCurrentUser();
     return (
