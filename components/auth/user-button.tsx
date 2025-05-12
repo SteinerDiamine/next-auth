@@ -30,9 +30,9 @@ export const UserButton = ({src, className}: UserButtonProps) => {
     const user = useCurrentUser();
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger>
+            <DropdownMenuTrigger className={className}>
                 <Avatar className="w-10 h-10 cursor-pointer">
-                    <AvatarImage src={user?.image || ""} />
+                     <AvatarImage src={src || user?.image || ""} />
                     <AvatarFallback className='bg-gray-600'>
                         <FaUser className="text-white" size={20} />
                     </AvatarFallback>
