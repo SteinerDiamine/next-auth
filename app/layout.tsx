@@ -8,6 +8,7 @@ import { ThemeProvider } from "@/components/auth/providers/theme-providers";
 import { cn } from "@/lib/utils";
 
 import { ModalProvider } from "@/components/providers/modal-providers";
+import { SocketProvider } from "@/components/providers/socket-providers";
 
 
 const geistSans = Geist({
@@ -53,8 +54,10 @@ export default async function RootLayout({
             storageKey="theme"
             
           >
+            <SocketProvider>
             <ModalProvider/>
             {children}
+            </SocketProvider>
           </ThemeProvider>
        
         </body>
