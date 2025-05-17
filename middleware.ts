@@ -67,25 +67,33 @@ export default auth((req) => {
   const isLoggedIn = !!req.auth;
 
   const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
+  const isApiRoute = nextUrl.pathname.startsWith('/api');
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
+  // Allow all API auth routes (like /api/auth/*)
   if (isApiAuthRoute) {
-    // Do nothing for API auth routes
     return;
+  }
+
+  // For other API routes, require authentication
+  if (isApiRoute && !isLoggedIn) {
+    return new Response(JSON.stringify({ error: "Unauthorized" }), {
+      status: 401,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
   }
 
   if (isAuthRoute) {
     if (isLoggedIn) {
-      // Redirect logged-in users away from auth routes
       return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
     }
-    // Allow unauthenticated users to access auth routes
     return;
   }
 
   if (!isLoggedIn && !isPublicRoute) {
-    // Redirect unauthenticated users to the login page
     let callbackUrl = nextUrl.pathname;
     if (nextUrl.search) {
       callbackUrl += nextUrl.search;
@@ -98,11 +106,10 @@ export default auth((req) => {
     );
   }
 
-  // Allow access to public routes or logged-in users
   return;
 });
 
-// Optionally, don't invoke Middleware on some paths
+// Update matcher to handle all routes including API routes
 export const config = {
   matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
 };
